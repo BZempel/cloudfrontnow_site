@@ -4,13 +4,31 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CloudFrontNow – 30-Minute Websites for Vape Shops</title>
+
+  <!-- SEO / Sharing -->
+  <link rel="canonical" href="https://cloudfrontnow.com/" />
   <meta name="description" content="Launch a vape shop website in 30 minutes. Pick a template, add your info, go live. Free trial." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta property="og:title" content="CloudFrontNow – 30-Minute Websites for Vape Shops" />
+  <meta property="og:description" content="Pick a template, add your info, go live on *.cloudfrontnow.com." />
+  <meta property="og:url" content="https://cloudfrontnow.com/" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <!-- Optional if/when you have a hero image: -->
+  <!-- <meta property="og:image" content="https://cloudfrontnow.com/hero.jpg" /> -->
+
+  <!-- Fonts & Styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!-- Age banner (21+) -->
+  <div id="age-banner" class="age-banner" role="dialog" aria-live="polite" hidden>
+    <p>21+ only. By using this site you confirm you are of legal smoking age in your jurisdiction.</p>
+    <button class="btn btn-small" id="age-ok" type="button">I’m 21+</button>
+  </div>
+
   <header class="nav">
     <div class="container nav-inner">
       <div class="brand">
@@ -32,11 +50,35 @@
       <div class="container hero-inner">
         <h1>Launch Your Vape Shop Website in <span class="highlight">30 Minutes</span></h1>
         <p class="sub">Pick a template. Add your info. Go live. It’s that easy.</p>
-        <div class="cta-row">
-          <!-- Replace with your signup/typeform link when ready -->
-          <a class="btn" href="mailto:hello@cloudfrontnow.com?subject=Start%20my%20trial">Start Free Trial</a>
-          <a class="btn btn-ghost" href="tel:+15551234567">Call us: (555) 123-4567</a>
-        </div>
+
+        <!-- Intake Form -->
+        <form id="intake" class="intake" action="#" method="post" novalidate>
+          <h3>Create your site</h3>
+          <label>Shop name
+            <input name="shopName" placeholder="Cloudfront Vape Co." required>
+          </label>
+          <label>Desired subdomain <span>.cloudfrontnow.com</span>
+            <input name="subdomain" placeholder="cloudfront-vape"
+                   required pattern="[a-z0-9-]{3,40}" title="lowercase letters, numbers, hyphens">
+          </label>
+          <label>Email
+            <input type="email" name="email" placeholder="owner@shop.com" required>
+          </label>
+          <label>Phone
+            <input type="tel" name="phone" placeholder="(555) 123-4567" required>
+          </label>
+          <label>Template
+            <select name="template" required>
+              <option value="classic">Classic</option>
+              <option value="dark">Dark</option>
+              <option value="bold">Bold</option>
+            </select>
+          </label>
+          <button class="btn" type="submit">Generate My Site</button>
+          <small>By continuing you agree to our <a href="/terms.html">Terms</a>.</small>
+        </form>
+        <!-- End Intake Form -->
+
       </div>
     </section>
 
@@ -98,14 +140,46 @@
 
   <footer class="footer">
     <div class="container footer-inner">
-      <small>© <span id="y"></span> CloudFrontNow. All rights reserved.</small>
+      <small>© <span id="y">2025</span> CloudFrontNow. All rights reserved.</small>
       <small><a href="/privacy.html">Privacy</a> • <a href="/terms.html">Terms</a></small>
     </div>
   </footer>
 
+  <!-- Scripts -->
   <script>
+    // footer year
     document.getElementById('y').textContent = new Date().getFullYear();
+
+    // age banner (show once per browser)
+    const AGE_KEY='cf_age_ok';
+    if(!localStorage.getItem(AGE_KEY)){
+      const b=document.getElementById('age-banner');
+      b.hidden=false;
+      document.getElementById('age-ok').onclick=()=>{localStorage.setItem(AGE_KEY,'1'); b.remove();};
+    }
+
+    // intake form -> provision endpoint (plug in your Replit URL)
+    const form = document.getElementById('intake');
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form));
+      if(!/^[a-z0-9-]{3,40}$/.test(data.subdomain)) return alert('Subdomain must be lowercase letters, numbers, hyphens (3–40).');
+
+      try {
+        const res = await fetch('https://YOUR-REPLIT-APP-URL/provision', {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify(data)
+        });
+        const json = await res.json();
+        if(!res.ok) throw new Error(json.error || 'Provisioning failed');
+        alert(`Success! Your site is provisioning at https://${json.host}`);
+        // Optionally redirect once ready:
+        // window.location.href = `https://${json.host}`;
+      } catch(err) {
+        alert(err.message);
+      }
+    });
   </script>
 </body>
 </html>
-
