@@ -1,35 +1,111 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CloudFrontNow</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background: #fafafa;
-      padding: 40px;
-    }
-    h1 {
-      color: #333;
-    }
-    .cta {
-      background: #4CAF50;
-      color: white;
-      padding: 15px 25px;
-      text-decoration: none;
-      border-radius: 6px;
-      font-size: 1.2em;
-    }
-    .cta:hover {
-      background: #45a049;
-    }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CloudFrontNow – 30-Minute Websites for Vape Shops</title>
+  <meta name="description" content="Launch a vape shop website in 30 minutes. Pick a template, add your info, go live. Free trial." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <h1>Launch Your Vape Shop Website in 30 Minutes</h1>
-  <p>Pick a template. Add your info. Go live. It's that easy.</p>
-  <a class="cta" href="#">Start Free Trial</a>
+  <header class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <div class="logo">CF</div>
+        <span>CloudFrontNow</span>
+      </div>
+      <nav>
+        <a href="#how">How it works</a>
+        <a href="#features">Features</a>
+        <a href="#contact">Contact</a>
+        <a class="btn btn-small" href="#start">Start Free Trial</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="start">
+      <div class="container hero-inner">
+        <h1>Launch Your Vape Shop Website in <span class="highlight">30 Minutes</span></h1>
+        <p class="sub">Pick a template. Add your info. Go live. It’s that easy.</p>
+        <div class="cta-row">
+          <!-- Replace with your signup/typeform link when ready -->
+          <a class="btn" href="mailto:hello@cloudfrontnow.com?subject=Start%20my%20trial">Start Free Trial</a>
+          <a class="btn btn-ghost" href="tel:+15551234567">Call us: (555) 123-4567</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section" id="how">
+      <div class="container">
+        <h2>How it works</h2>
+        <div class="grid-3">
+          <div class="card">
+            <h3>1) Sign up</h3>
+            <p>Create your free account. No credit card required.</p>
+          </div>
+          <div class="card">
+            <h3>2) Pick a template</h3>
+            <p>Choose from clean, mobile-first designs made for vape shops.</p>
+          </div>
+          <div class="card">
+            <h3>3) Go live</h3>
+            <p>Add hours, phone, Google Maps, and menu items — publish with one click.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="section" id="features">
+      <div class="container">
+        <h2>What you get</h2>
+        <ul class="features">
+          <li>✔ Mobile-first website templates</li>
+          <li>✔ Click-to-call button</li>
+          <li>✔ Google Maps & hours</li>
+          <li>✔ Simple menu (CSV upload)</li>
+          <li>✔ Optional POS/Inventory connection (coming soon)</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- MAP + CONTACT -->
+    <section class="section alt" id="contact">
+      <div class="container contact-grid">
+        <div>
+          <h2>Contact</h2>
+          <p>Email: <a href="mailto:hello@cloudfrontnow.com">hello@cloudfrontnow.com</a></p>
+          <p>Phone: <a href="tel:+15551234567">(555) 123-4567</a></p>
+          <p>Hours: Mon–Sat 10am–7pm</p>
+        </div>
+        <div class="map-wrap">
+          <!-- Replace the src with the embed for a real address -->
+          <iframe
+            title="CloudFrontNow Map"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.83543450941!2d144.95373531531582!3d-37.81627974201468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDQ5JzAwLjYiUyAxNDTCsDU3JzE1LjQiRQ!5e0!3m2!1sen!2sus!4v1615853266400!5m2!1sen!2sus"
+            width="100%" height="280" style="border:0;" allowfullscreen="" loading="lazy">
+          </iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <small>© <span id="y"></span> CloudFrontNow. All rights reserved.</small>
+      <small><a href="/privacy.html">Privacy</a> • <a href="/terms.html">Terms</a></small>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
+
