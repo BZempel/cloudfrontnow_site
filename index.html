@@ -166,7 +166,7 @@
       if(!/^[a-z0-9-]{3,40}$/.test(data.subdomain)) return alert('Subdomain must be lowercase letters, numbers, hyphens (3–40).');
 
       try {
-        const res = await fetch('https://YOUR-REPLIT-APP-URL/provision', {
+        const res = await fetch('/api/provision', {
           method: 'POST',
           headers: {'Content-Type':'application/json'},
           body: JSON.stringify(data)
@@ -183,3 +183,4 @@
   </script>
 </body>
 </html>
+
